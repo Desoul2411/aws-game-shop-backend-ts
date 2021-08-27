@@ -1,11 +1,10 @@
 import "source-map-support/register";
 import { formatJSONResponse } from "@libs/apiGateway";
 import { middyfy } from "@libs/lambda";
-import { APIGatewayProxyHandler, APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayProxyResult } from "aws-lambda";
 const goods = require("../../data/goods.json");
 
-
-const getProductsList: APIGatewayProxyHandler = async (): Promise<APIGatewayProxyResult> => {
+const getProductsList = async (): Promise<APIGatewayProxyResult> => {
   return formatJSONResponse(200, goods);
 };
 
