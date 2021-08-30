@@ -9,17 +9,6 @@ export default {
         method: "get",
         path: "/products",
         cors: true,
-        documentation: {
-          description: "Get products",
-          methodResponses: [
-            {
-              statusCode: "200",
-              responseModels: {
-                "application/json": "GetProducts",
-              },
-            },
-          ],
-        },
       },
     },
   ],
