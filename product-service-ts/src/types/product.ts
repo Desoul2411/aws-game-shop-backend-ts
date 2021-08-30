@@ -3,5 +3,6 @@ export type Product = {
   count: number;
   title: string;
   description: string;
+  imageId: string;
   price: number;
 };

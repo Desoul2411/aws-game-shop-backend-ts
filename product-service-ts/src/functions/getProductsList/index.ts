@@ -7,13 +7,19 @@ export default {
     {
       http: {
         method: "get",
-        path: "products",
+        path: "/products",
         cors: true,
-        /*  request: {
-          schema: {
-            'application/json': schema
-          }
-        } */
+        documentation: {
+          description: "Get products",
+          methodResponses: [
+            {
+              statusCode: "200",
+              responseModels: {
+                "application/json": "GetProducts",
+              },
+            },
+          ],
+        },
       },
     },
   ],

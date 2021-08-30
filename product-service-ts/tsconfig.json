@@ -3,7 +3,6 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "moduleResolution": "node",
-    "module": "es6",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "noUnusedLocals": true,

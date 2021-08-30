@@ -1,11 +1,11 @@
 import "source-map-support/register";
-import { formatJSONResponse } from "@libs/apiGateway";
+import { formatJSONResponse, ValidatedEventAPIGatewayProxyEvent } from "@libs/apiGateway";
 import { middyfy } from "@libs/lambda";
 import { APIGatewayProxyResult } from "aws-lambda";
-const goods = require("../../data/goods.json");
+import goods from "../../data/goods.json";
 
-const getProductsList = async (): Promise<APIGatewayProxyResult> => {
-  return formatJSONResponse(200, goods);
+const getProductsList: ValidatedEventAPIGatewayProxyEvent<undefined>  = async (): Promise<APIGatewayProxyResult> => {
+  return formatJSONResponse(200, {products: goods});
 };
 
 export const main = middyfy(getProductsList);

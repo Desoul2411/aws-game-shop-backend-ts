@@ -22,7 +22,7 @@ export const formatJSONResponse = (
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Credentials": true,
     },
-    statusCode: statusCode,
+    statusCode,
     body: JSON.stringify(response),
   };
 };
