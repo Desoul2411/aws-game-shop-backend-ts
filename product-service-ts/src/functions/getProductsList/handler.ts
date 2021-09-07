@@ -20,10 +20,9 @@ const dbOptions = {
 };
 
 const getProductsList = async (): Promise<APIGatewayProxyResult> => {
+  console.log('dbOptions', dbOptions);
   const client = new Client(dbOptions);
   await client.connect();
-
-  console.log('database',PG_DATABASE );
 
   try {
     const { rows } = await client.query("SELECT p.id, p.title, p.description, p.price, p.imageId, stocks.count FROM products as p LEFT OUTER JOIN stocks ON p.id = stocks.product_id");
