@@ -3,6 +3,8 @@ import type { AWS } from "@serverless/typescript";
 import getProductsList from "@functions/getProductsList";
 import getProductsById from "@functions/getProductsById";
 
+const { PG_HOST, PG_PORT, PG_DATABASE, PG_USERNAME, PG_PASSWORD } = process.env;
+
 const serverlessConfiguration: AWS = {
   service: "product-service-ts",
   frameworkVersion: "2",
@@ -24,17 +26,14 @@ const serverlessConfiguration: AWS = {
     },
     environment: {
       /* AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1", */
-      PG_HOST: 'lesson4.ctpjnwanumqx.eu-west-1.rds.amazonaws.com',
-      PG_PORT: '5432',
-      PG_DATABASE: 'lesson4',
-      PG_USERNAME: 'postgress',
-      PG_PASSWORD: 'tp6UBi5yArHkNip8PNwX'
-
+      PG_HOST,
+      PG_PORT,
+      PG_DATABASE,
+      PG_USERNAME,
+      PG_PASSWORD,
     },
     lambdaHashingVersion: "20201221",
   },
-
-    
 
   // import the function via paths
   functions: { getProductsList, getProductsById },

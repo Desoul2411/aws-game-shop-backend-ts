@@ -4,12 +4,16 @@ create table products (
     description text,
     price integer,
     imageId text
-) create table stocks (
+) 
+
+create table stocks (
     product_id uuid,
-    foreign key ("product_id") references "products" ("id"),
-    count integer
+    count integer,
+    foreign key ("product_id") references "products" ("id")
 )
+
 insert into products (title, description, price, imageId)
+
 values (
         'Life is Strange: True Colors (PS4)',
         'В истории популярной серии Life Is Strange начинается следующий этап — вам предстоит познакомиться с новой главной героиней и раскрыть волнующую тайну! Алекс Чэнь давно скрывает от всех своё «проклятие» — сверхъестественное умение считывать и поглощать сильные чувства других людей, которые представляются ей в виде разноцветных аур, а также управлять ими. ',
@@ -59,6 +63,7 @@ values (
         'bloodborne'
     )
 insert into stocks (product_id, count)
+
 values ('20139641-0178-4eda-a97f-4076cbc09094', 4),
     ('74c26ac5-525b-45e6-b5c0-924fb55adee1', 4),
     ('c092321b-ce63-4c9f-b941-b9bf084ce066', 3),
