@@ -1,7 +1,7 @@
 import "source-map-support/register";
 import { formatJSONResponse } from "@libs/apiGateway";
 import { middyfy } from "@libs/lambda";
-import { APIGatewayProxyResult } from "aws-lambda";
+import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
 
 const { Client } = require("pg");
 
@@ -19,8 +19,8 @@ const dbOptions = {
   connectionTimeoutMillis: 5000,
 };
 
-const getProductsList = async (): Promise<APIGatewayProxyResult> => {
-  console.log('dbOptions', dbOptions);
+const getProductsList = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
+  console.log('event', event);
   const client = new Client(dbOptions);
   await client.connect();
 

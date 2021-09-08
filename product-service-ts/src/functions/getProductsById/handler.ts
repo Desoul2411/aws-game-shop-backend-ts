@@ -29,22 +29,18 @@ const getProductsById = async (event: APIGatewayEvent): Promise<APIGatewayProxyR
   const { productId } = event.pathParameters;
 
   try {
-    const { rows } = await client.query(`SELECT p.id, p.title, p.description, p.price, p.imageId, stocks.count FROM products as p LEFT OUTER JOIN stocks ON p.id = stocks.product_id AND p.id = '${productId}'`);
-    console.log(rows);
-    return formatJSONResponse(200, { products: rows });
+    const { rows } = await client.query(`SELECT p.id, p.title, p.description, p.price, p.imageId, stocks.count FROM products as p LEFT JOIN stocks ON p.id=stocks.product_id WHERE p.id='${productId}'`);
+
+    if (Object.values(rows).length === 0) {
+      return formatJSONResponse(404, { message: 'User is not found!' });
+    }
+    
+    return formatJSONResponse(200, { product: rows });
   } catch (error) {
     return formatJSONResponse(500, { error: error.stack });
   } finally {
     client.end();
   }
-
-  //const product: Product = goods.find((item) => item.id == productId);
-
- /*  if (!product) {
-    return formatJSONResponse(404, { message: "Product is not found!" });
-  }
-
-  return formatJSONResponse(200, product); */
 };
 
 export const main = middyfy(getProductsById);
