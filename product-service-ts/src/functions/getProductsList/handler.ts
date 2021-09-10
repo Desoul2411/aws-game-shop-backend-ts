@@ -2,22 +2,9 @@ import "source-map-support/register";
 import { formatJSONResponse } from "@libs/apiGateway";
 import { middyfy } from "@libs/lambda";
 import { APIGatewayEvent, APIGatewayProxyResult } from "aws-lambda";
-
+import { dbOptions } from '../../constants/dbOptions';
 const { Client } = require("pg");
 
-const { PG_HOST, PG_PORT, PG_DATABASE, PG_USERNAME, PG_PASSWORD } = process.env;
-
-const dbOptions = {
-  user: PG_USERNAME,
-  host: PG_HOST,
-  database: PG_DATABASE,
-  password: PG_PASSWORD,
-  port: PG_PORT,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-  connectionTimeoutMillis: 5000,
-};
 
 const getProductsList = async (event: APIGatewayEvent): Promise<APIGatewayProxyResult> => {
   console.log('event', event);

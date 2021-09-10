@@ -44,7 +44,7 @@ const addProduct = async ({body}): Promise<APIGatewayProxyResult> => {
     await client.query(insertStockquery, valueForStockQuery);
     await client.query('COMMIT');
 
-    return formatJSONResponse(201, { user: {id, title, description, price, imageid, count} });
+    return formatJSONResponse(201, { product: {id, title, description, price, imageid, count} });
   } catch (error) {
     await client.query('ROLLBACK');
 
