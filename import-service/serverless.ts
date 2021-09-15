@@ -17,6 +17,30 @@ const serverlessConfiguration: AWS = {
   provider: {
     name: "aws",
     runtime: "nodejs14.x",
+    iamRoleStatements: [
+      {
+        Effect: "Allow",
+        Action: "s3:ListBucket",
+        Resource: "arn:aws:s3:::aws-game-shop-catalogs"
+      },
+      {
+        Effect: "Allow",
+        Action: "s3:*",
+        Resource: "arn:aws:s3:::aws-game-shop-catalogs"
+      },
+      {
+        Effect: "Allow",
+        Action: "sqs:*",
+        Resource: "Fn::GetAtt: [ SQSQueue, Arn ]"
+      },
+      {
+        Effect: "Allow",
+        Action: "sns:*",
+        Resource: {
+          Ref: "SNSTopic"
+        }
+      },
+    ],
     stage: "dev",
     region: "eu-west-1",
     apiGateway: {
